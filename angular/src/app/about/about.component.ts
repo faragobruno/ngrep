@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms'
+import { AngularFireDatabase } from '@angular/fire/database'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-about',
@@ -11,12 +13,12 @@ export class AboutComponent implements OnInit {
   messageForm: FormGroup
   submitted =false
   success=false
+  itemValue=''
+  items: Observable<any[]> 
 
-  constructor(private formBuilder: FormBuilder) { 
-    this.messageForm = this.formBuilder.group({
-      name:['', Validators.required],
-      message:['', Validators.required]
-    })
+  constructor(public db: AngularFireDatabase) { 
+    this.items = db.list('items').valueChanges()
+    console.log(this.items)
   }
 
   onSubmit(){

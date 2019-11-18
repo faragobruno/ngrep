@@ -10,6 +10,11 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatTableModule} from '@angular/material/table';
+
+import { AngularFireModule } from '@angular/fire'
+import { AngularFireDatabaseModule } from '@angular/fire/database'
+import { environment } from '../environments/environment'
 
 @NgModule({
   declarations: [
@@ -19,12 +24,15 @@ import { MatSliderModule } from '@angular/material/slider';
     HomeComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
