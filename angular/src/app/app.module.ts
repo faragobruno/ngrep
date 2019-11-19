@@ -6,26 +6,28 @@ import { ReactiveFormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatTableModule} from '@angular/material/table';
 
 import { AngularFireModule } from '@angular/fire'
-import { AngularFireDatabaseModule } from '@angular/fire/database'
-import { environment } from '../environments/environment'
+import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { environment } from '../environments/environment';
+import { ItemsComponent } from './components/items/items.component';
+
+import { ItemService } from './services/item.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    AboutComponent,
-    HomeComponent
+    HomeComponent,
+    ItemsComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -34,7 +36,7 @@ import { environment } from '../environments/environment'
     MatSliderModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
